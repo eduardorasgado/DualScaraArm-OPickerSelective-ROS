@@ -1,3 +1,7 @@
+This repo was cloned from yangliu28 and modified to ROS Kinetic use.
+Before initializing the simulation you have to change value="/home/canix/catkin_ws2/src/two_scara_collaboration/urdf/red_cylinder.urdf"/>
+to your system folders in launch/initialize.launch param.
+
 # two_scara_collaboration
 
 Simulation of two SCARA robots collaboratively sorting items from a conveyor belt with collision avoidance and task distribution.
