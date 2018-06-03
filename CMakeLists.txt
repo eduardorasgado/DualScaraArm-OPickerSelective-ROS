@@ -1,47 +1,99 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(two_scara_collaboration)
 
-find_package(catkin_simple REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+  message_generation
+  actionlib_msgs
+  actionlib
+  trajectory_msgs
+  gazebo_msgs
+  sensor_msgs
+)
 
-#uncomment next line to use OpenCV library
-#find_package(OpenCV REQUIRED)
+ add_message_files(
+   FILES
+   cylinder_blocks_poses.msg
+   scara_upper_boundary.msg
+ )
 
-#uncomment the next line to use the point-cloud library
-#find_package(PCL 1.7 REQUIRED)
+ add_service_files(
+   FILES
+   kpkv_msg.srv
+   pool_claim_msg.srv
+   upper_boundary_change.srv
+ )
 
-#uncomment the following 4 lines to use the Eigen library
-#find_package(cmake_modules REQUIRED)
-#find_package(Eigen3 REQUIRED)
-#include_directories(${EIGEN3_INCLUDE_DIR})
-#add_definitions(${EIGEN_DEFINITIONS})
+ add_action_files(
+   FILES
+   scara_gripper.action
+ )
 
-catkin_simple()
+ generate_messages (
+   DEPENDENCIES
+   std_msgs
+   actionlib_msgs
+   trajectory_msgs
+   gazebo_msgs
+   sensor_msgs
+ )
 
-# example boost usage
-# find_package(Boost REQUIRED COMPONENTS system thread)
+#BUILD
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+)
 
-# C++0x support - not quite the same as final C++11!
-# use carefully;  can interfere with point-cloud library
-# SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 
-# Libraries: uncomment the following and edit arguments to create a new library
-# cs_add_library(my_lib src/my_lib.cpp)   
+#DECLARE a c++executable
+ add_executable(cylinder_blocks_spawner src/cylinder_blocks_spawner.cpp)
+ add_executable(cylinder_blocks_poses_publisher src/cylinder_blocks_poses_publisher.cpp)
+ add_executable(scara_gripper_action_server src/scara_gripper_action_server.cpp)
+ add_executable(scara_joint_controller src/scara_joint_controller.cpp)
+ add_executable(cylinder_active_pool src/cylinder_active_pool.cpp)
+ add_executable(scara_upper_boundary_maintainer src/scara_upper_boundary_maintainer.cpp)
+ add_executable(scara_left_motion_planner src/scara_left_motion_planner.cpp)
+ add_executable(scara_right_motion_planner src/scara_right_motion_planner.cpp)
 
-# Executables: uncomment the following and edit arguments to compile new nodes
-# may add more of these lines for more nodes from the same package
-# cs_add_executable(example src/example.cpp)
-cs_add_executable(cylinder_blocks_spawner src/cylinder_blocks_spawner.cpp)
-cs_add_executable(cylinder_blocks_poses_publisher src/cylinder_blocks_poses_publisher.cpp)
-cs_add_executable(scara_gripper_action_server src/scara_gripper_action_server.cpp)
-cs_add_executable(scara_joint_controller src/scara_joint_controller.cpp)
-cs_add_executable(cylinder_active_pool src/cylinder_active_pool.cpp)
-cs_add_executable(scara_upper_boundary_maintainer src/scara_upper_boundary_maintainer.cpp)
-cs_add_executable(scara_left_motion_planner src/scara_left_motion_planner.cpp)
-cs_add_executable(scara_right_motion_planner src/scara_right_motion_planner.cpp)
+add_dependencies(cylinder_blocks_spawner two_scara_collaboration_generate_messages_cpp
+	 ${catkin_EXPORTED_TARGETS})
+add_dependencies(cylinder_blocks_poses_publisher two_scara_collaboration_generate_messages_cpp
+	 ${catkin_EXPORTED_TARGETS})
+add_dependencies(scara_gripper_action_server two_scara_collaboration_generate_messages_cpp
+	 ${catkin_EXPORTED_TARGETS})
+add_dependencies(scara_joint_controller two_scara_collaboration_generate_messages_cpp
+	 ${catkin_EXPORTED_TARGETS})
+add_dependencies(cylinder_active_pool two_scara_collaboration_generate_messages_cpp
+	 ${catkin_EXPORTED_TARGETS})
+add_dependencies(scara_upper_boundary_maintainer two_scara_collaboration_generate_messages_cpp
+	 ${catkin_EXPORTED_TARGETS})
+add_dependencies(scara_left_motion_planner two_scara_collaboration_generate_messages_cpp
+	 ${catkin_EXPORTED_TARGETS})
+add_dependencies(scara_right_motion_planner two_scara_collaboration_generate_messages_cpp
+	 ${catkin_EXPORTED_TARGETS})
 
-#the following is required, if desire to link a node in this package with a library created in this same package
-# edit the arguments to reference the named node and named library within this package
-# target_link_library(example my_lib)
+ target_link_libraries(cylinder_blocks_spawner
+  ${catkin_LIBRARIES}
+)
+ target_link_libraries(cylinder_blocks_poses_publisher
+  ${catkin_LIBRARIES}
+)
+ target_link_libraries(scara_gripper_action_server
+  ${catkin_LIBRARIES}
+)
+ target_link_libraries(scara_joint_controller
+  ${catkin_LIBRARIES}
+)
+ target_link_libraries(cylinder_active_pool
+  ${catkin_LIBRARIES}
+)
+ target_link_libraries(scara_upper_boundary_maintainer
+  ${catkin_LIBRARIES}
+)
+ target_link_libraries(scara_left_motion_planner
+  ${catkin_LIBRARIES}
+)
+ target_link_libraries(scara_right_motion_planner
+  ${catkin_LIBRARIES}
+)
 
-cs_install()
-cs_export()

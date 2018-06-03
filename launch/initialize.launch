@@ -3,8 +3,8 @@
 
   <!-- put file path of urdf model in parameter server, for the cylinder spawner node -->
   <!-- more details at launch file of swarm robot simulation -->
-  <param name="red_cylinder_path" type="str" value="/home/yang/ros_ws/src/two_scara_collaboration/urdf/red_cylinder.urdf"/>
-  <param name="blue_cylinder_path" type="str" value="/home/yang/ros_ws/src/two_scara_collaboration/urdf/blue_cylinder.urdf"/>
+  <param name="red_cylinder_path" type="str" value="/home/canix/catkin_ws2/src/two_scara_collaboration/urdf/red_cylinder.urdf"/>
+  <param name="blue_cylinder_path" type="str" value="/home/canix/catkin_ws2/src/two_scara_collaboration/urdf/blue_cylinder.urdf"/>
 
   <!-- initialize gazebo with a world file -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
