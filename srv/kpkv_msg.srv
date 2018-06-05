@@ -1,7 +1,11 @@
-# service message for pd parameter tuning of the joint controller
+#mensaje del servicio para setear el parametro PD del controlador de cada angulo del robot
 
+# Argumentos del servicio
+#variable flotante de 64 bits que almacena kp, kv
 float64 kp
 float64 kv
 ---
+#Resultado del servicio
+#variable tipo booleana que guarda el estado true/false con nombre setting_is_done
 bool setting_is_done
 

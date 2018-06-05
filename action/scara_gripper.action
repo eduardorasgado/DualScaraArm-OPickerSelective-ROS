@@ -1,25 +1,46 @@
-# action server message for the gripper control
-# motion of the gripper includes going up and down, grapsing and releasing
+#---------action es para actionlib----------
+# cada action posee tres variables: GOAL, RESULT, FEEDBACK
+
+#esta accion es un mensaje que usa el servidor para el control del gripper
+#el movimiento del gripper incluye ir arriba y abajo, tomar y soltar
 
 
-# goal definition
-# whether commanding the gripper in high or low position
-    # -1 is up
-    # 0 keeps status
-    # 1 is down (means stretch out the gripper for some task)
+# definimos la variable GOAL(input del actionlib)
+
+#Si el control del gripper esta en pocision arriba o abajo
+    # -1 es arriba
+    # 0 se mantiene el stado del gripper
+    # 1 es abajo(significa que se estira para alguna tarea)
+
+#int8 es un entero de 8 bits que se va a llamar up_down_left
 int8 up_down_left
 int8 up_down_right
-# whether the gripper is grasping or releasing, grasp is true
-    # -1 is release
-    # 0 keeps status
-    # 1 is grasp
+
+# si el griper esta agarrando o soltando un objeto, agarrar sera true
+    # -1 es soltar
+    # 0 se mantiene el estado
+    # 1 es agarrar
+#int8 es un entero de 8 bits que se va a llamar grasp_release_left
 int8 grasp_release_left
 int8 grasp_release_right
+
+#estas tres lineas son obligatorias para separar las variables
 ---
-# result definition
+# Definimos la variable RESULT(el output de nuestra actionlib)
+
 int32 result
 ---
-# feedback
+# Definimos el FEEDBACK(que es una retroalimentacion en lo que se recibe el resultado)
 int32 fdbk
 
 
+###########################################3
+#Sin comentarios el archivo se veria asi:
+
+#int8 up_down_left
+#int8 up_down_right
+#---
+#int32 result
+#---
+#feedback
+#int32 fdbk

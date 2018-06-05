@@ -1,6 +1,11 @@
 # service message to claim some cylinder from active pool
+#mensaje del servicio para reclamar cilindros de la alberca activa
 
+#argumento del servicio
+#entero de 8 bits que guarda la variable cylinder_index
 int8 cylinder_index
 ---
+#resultado del servicio
+#varible booleana
 bool cylinder_claimed
 

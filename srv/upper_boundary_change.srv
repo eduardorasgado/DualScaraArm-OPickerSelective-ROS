@@ -1,9 +1,16 @@
 # service message to change published data in upper boundary topics
+#mensaje del servicio para cambiar los datos publicados en los topics relacionados
+#a la superficie del robot
 
-bool in_action_change  # decide if in_action is to change or remain same
-bool in_action  # whether it goes into the upper area of the conveyor belt
-bool upper_boundary_change  # decide if upper_boundary is to change or remain same
-float64 upper_boundary  # the upper boundary data
+#Argumentos del servicio
+bool in_action_change  # decide si la variable in_action es para cambiar o
+                       #para permanecer igual
+bool in_action  # si la superficie del robot se encuentra en el area de la banda 
+                #transportadora
+bool upper_boundary_change  # decide si upper_boundary va a cambiar o permanecer igual
+float64 upper_boundary  # los datos de la superficie del robot
 ---
+#Resultado del servicio
+#booleana que nos dice que el cambio ya esta hecho
 bool change_is_done
 

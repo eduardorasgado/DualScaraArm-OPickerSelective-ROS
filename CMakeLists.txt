@@ -1,6 +1,8 @@
+#-------------DESCRIPCION DEL PROYECTO-------- 
 cmake_minimum_required(VERSION 2.8.3)
 project(two_scara_collaboration)
 
+#-------------ENCONTRAR LOS PAQUETES DE CATKIN---------------
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
@@ -11,13 +13,19 @@ find_package(catkin REQUIRED COMPONENTS
   gazebo_msgs
   sensor_msgs
 )
+# --> ESTAMOS TRABAJANDO EN GAZEBO Y ROS
+#---- La caja de estados se comunica con actionlib
 
+#---------------CARGAMOS LOS ARCHIVOS DE LAS CARPETAS---------
+
+#---CONVERTIR MENSAJES A HEADERS
  add_message_files(
    FILES
    cylinder_blocks_poses.msg
    scara_upper_boundary.msg
  )
 
+#---CONVERTIR SERVICIOS A HEADERS
  add_service_files(
    FILES
    kpkv_msg.srv
@@ -25,11 +33,13 @@ find_package(catkin REQUIRED COMPONENTS
    upper_boundary_change.srv
  )
 
+#---CONVERTIR ACCIONES A HEADERS
  add_action_files(
    FILES
    scara_gripper.action
  )
 
+#-------------------GENERAR LAS DEPENDENCIAS DE LOS MENSAJES---------
  generate_messages (
    DEPENDENCIES
    std_msgs
@@ -39,13 +49,13 @@ find_package(catkin REQUIRED COMPONENTS
    sensor_msgs
  )
 
-#BUILD
+#----------------OTRA ORDEN DE BUILD PARA INCLUIR DIRECTORIOS----
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
 
-#DECLARE a c++executable
+#---------DECIRLE AL BUILD QUE CONSTRUYA EJECUTABLES EN C++
  add_executable(cylinder_blocks_spawner src/cylinder_blocks_spawner.cpp)
  add_executable(cylinder_blocks_poses_publisher src/cylinder_blocks_poses_publisher.cpp)
  add_executable(scara_gripper_action_server src/scara_gripper_action_server.cpp)
@@ -55,6 +65,7 @@ include_directories(
  add_executable(scara_left_motion_planner src/scara_left_motion_planner.cpp)
  add_executable(scara_right_motion_planner src/scara_right_motion_planner.cpp)
 
+#--------AGREGA LAS DEPENDENCIAS A CADA EXECUTABLE-------------
 add_dependencies(cylinder_blocks_spawner two_scara_collaboration_generate_messages_cpp
 	 ${catkin_EXPORTED_TARGETS})
 add_dependencies(cylinder_blocks_poses_publisher two_scara_collaboration_generate_messages_cpp
@@ -72,6 +83,7 @@ add_dependencies(scara_left_motion_planner two_scara_collaboration_generate_mess
 add_dependencies(scara_right_motion_planner two_scara_collaboration_generate_messages_cpp
 	 ${catkin_EXPORTED_TARGETS})
 
+#--------VINCULAR LAS LIBRERIAS A LOS EJECUTABLES---------------
  target_link_libraries(cylinder_blocks_spawner
   ${catkin_LIBRARIES}
 )

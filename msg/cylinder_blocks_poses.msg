@@ -2,7 +2,14 @@
 # variable length array, length decided by topic /current_cylinder_blocks
 # to be published as a topic
 
-float64[] x  # x coordinate in the world
-float64[] y  # y coordinate in the world
-float64[] z  # z coordinate in the world
+#el tipo de mensaje para describir las pocisiones en 3 dimensiones de los cilindros
+#arreglos de longitud en cada variable, la longitud esta decidida
+#por el topic /current_cylender_blocks
+
+#tres arrays tipo flotante de 64 bits
+float64[] x  # coordenada x en el mundo
+float64[] y  # coordenada y en el mundo
+float64[] z  # coordernada z en el mundo
+
+#estas tres coordenadas son de cada cilindro
 
