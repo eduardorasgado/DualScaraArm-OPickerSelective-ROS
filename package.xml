@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="2">
   <name>two_scara_collaboration</name>
   <version>0.0.0</version>
   <description>The two_scara_collaboration package</description>
@@ -22,5 +22,6 @@
   <run_depend>actionlib</run_depend>
 
   <export>
+    
   </export>
 </package>
