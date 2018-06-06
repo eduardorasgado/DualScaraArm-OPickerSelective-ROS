@@ -1,5 +1,8 @@
 This repo was cloned from yangliu28 and modified to ROS Kinetic use.
 Before initializing the simulation you have to change value="/home/canix/catkin_ws2/src/two_scara_collaboration/urdf/red_cylinder.urdf"/>
+
+Before initializing the simulation change the initialize.launch file where you find "two_scara_collaboration" if you name your project with other one
+
 to your system folders in launch/initialize.launch param.
 
 Note: Kill gazebo process by locationg it using pid on htop or some real time process manage tool, once you have been close it.
