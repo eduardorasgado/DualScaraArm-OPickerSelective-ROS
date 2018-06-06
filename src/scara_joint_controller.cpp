@@ -1,13 +1,15 @@
-// the joint controller for all four joint of two scara robots
-// a PD controller read joint angle & rate, and apply joint torque
+//el control de angulos para todos los 4 angulos de los dos scara
+// un controlador proporcional y diferencial(PD) lee el angulo y el radio de frecuencia, y aplica
+//el torque al angulo
 
-// the "Joint" class is copied from my previous project, with some minor changes
-// one instance of this class to control one joint of the robots
-// ros communication of the class:
-    // service clients, /gazebo/get_joint_properties, /gazebo/apply_joint_effort
-    // publish joint state, including posiiton, velocity, torque
-    // subscribe to position command
-    // service server for kp & kv tuning
+//La clase "angulo" de este archivo puede generar instancias para controar uno de los angulos del
+//robot
+
+//la comunicacion de ros de esta clase es:
+//   cliente de servicio, gazebo/get_joint_properties, /gazebo/apply_joint_effort
+//   publicar el estado del angulo, incuye: pocision, velocidad y torque
+//   suscribe el comando de la posicion
+//   servidor del servicio para kp y kv (ajuste de los factores)
 
 #include <ros/ros.h>
 #include <std_msgs/Float64.h>

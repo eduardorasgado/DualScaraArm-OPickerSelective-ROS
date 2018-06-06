@@ -1,10 +1,10 @@
-// this node will publish the topic "cylinder_blocks_poses"
-// including all current cylinder blocks, pose is 3-D position
+//este nodo publicara al topic /cyinder_blocks_poses
+//incluyendo todas los bloques actuales, la posicion es en 3 dimensiones
 
-// ros communication:
-    // subscribe to topic "/current_cylinder_blocks"
-    // subscribe to topic "/gazebo/model_states"
-    // publish the topic "/cylinder_blocks_poses"
+//Comunicacion ROS:
+//    suscribir al topic /current_cylinder_blocks
+//    suscribir al topic /gazebo/model_states
+//    publicar el topic //cylinder_blocks_poses
 
 #include <ros/ros.h>
 #include <vector>

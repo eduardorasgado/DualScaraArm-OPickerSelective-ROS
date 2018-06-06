@@ -1,19 +1,22 @@
-// this node maintain a pool of reachable blocks
-// reachable means in the range of the the scara robots
-// and could be fetched before it leaves robot's range
-// this cylinder active pool has follow read/write property:
-    // published for public read access
-    // write by sending a service request
+//este nodo mantiene una alberca de bloques alcanzables
+//alcanzable significa que estan en el rango del borot scara
+//y pueden ser tomados antes de que dejen el rango del robot
+//esta alberca activa de cilindros ha seguido las propiedades leer/escribir:
+//    publicadas para accesos de lectura publicas
+//   escribir mandando un servicio de solicitud o request
 
-// add into the pool only when it goes into the reachable range
-// delete from the pool
-    // when it goes out the range
-    // when it is claimed by one of the robot motion planner
+//agrega dentro de la alberca solamente cuando un objeto esta en un rango alcanzable
+//Cuando un objeto se borra de la alberca:
+//    -cuando se sale del rango
+//    -cuando es reclamada por uno de los robots en su motion planner
 
-// ros communication:
-    // subscribe to topic "/cylinder_blocks_poses"
-    // publish the topic "/cylinder_active_pool"
-    // host a service for pool change "/cylinder_pool_claim"
+//Comunicacion de ROS:
+
+//    Suscribe al topic /cylinder_blocks_poses
+//    Publica al topic /cylinder_active_pool
+//    hostea un servicio para el cambio de la alberca /cylinder_pool_claim
+
+//El codigo empieza aqui:
 
 #include <ros/ros.h>
 #include <math.h>

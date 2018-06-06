@@ -1,11 +1,13 @@
-// spawn the red and blue cylinders on the conveyor belt
-// and give them initial speed (by apply_body_wrench) to slide on conveyor
+//hace aparecer los cilindros rojos y azules en la banda transportadora
+//y da la velocidad inicial (dado por apply_body_wrench) a la banda transportadora
 
-// ros communications:
-    // spawn model through gazebo service: /gazebo/spawn_urdf_model
-    // initialize cylinder speed: /gazebo/apply_body_wrench
-    // get urdf file path of cylinder blocks from parameter server
-    // publish all current blocks through topic: /current_cylinder_blocks
+//la comunicacion de ros:
+//    hace aparecer el modelo mendiante el servicio: /gazebo/spawn_urdf_model
+//    inicializa la velocidad del cilindro mediante: /gazebo/apply_body_wrench
+//    consigue los archivos urdf de los bloques de cilindro del servidor parametro
+//    publica todos los cilindros actuales a traves del topic: /current_cylinder_blocks
+
+//Inicia el codigo aqui:
 
 #include <ros/ros.h>
 #include <iostream>

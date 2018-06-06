@@ -1,13 +1,15 @@
-// the action server for the gripper control
-// except receiving command from client, it keeps the gripper in its last status
+//EL servidor de la accion para el control del gripper
+//exceptua recibir los comandos del cliente, mantiene el gripper en su ultimo estatus
 
-// ros communication:
-    // host an action server "gripper_action" to receive command on the gripper
-    // service client for gazebo service "/gazebo/apply_joint_effort"
+//comunicacion con ros:
+//    anfitriona un servidor de accion llamado "gripper_action" para recibir los comandos para el gripper
+//    servidor de cliente para el sevicio gazebo/apply_joint_effort
 
-// action server is not really necessary here
-// because the server only receives commanded status of the gripper
-// no feedback or result are need, a service server will also do fine
+//un servidor de accion no es verdaderamente necesario aqui
+//porque el servidor solo recibe comandos de estatus de el gripper
+//no es necesario  feedback o resultados, un servidor de servicio también puede servir para este cpp
+
+
 
 #include <ros/ros.h>
 #include <actionlib/server/simple_action_server.h>

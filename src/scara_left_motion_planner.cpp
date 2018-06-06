@@ -1,33 +1,35 @@
-// test program for scara motion control
-// control the scara robot by publishing joint angles on corresponding topic
-// one of the two independent motion planner
-// all two scara robots are positive configured
+//#Estos scripts estan escritos en c++, por eso su extension es cpp.
+//#Cada uno de los archivos en la carpeta src representa un nodo.
+//#Los siguientes son los topics que se manejan en estos nodos:
 
-// ros communication:
-    // subscribe to topic "/current_cylinder_blocks"
-    // subscribe to topic "/cylinder_blocks_poses"
-    // subscribe to topic "/scara_robot_left_rotation1_pos"
-    // subscribe to topic "/scara_robot_left_rotation2_pos"
-    // publish to topic "/scara_robot_left_rotation1_pos_cmd"
-    // publish to topic "/scara_robot_left_rotation2_pos_cmd"
-    // subscribe to topic "/cylinder_active_pool"
-    // service client to service "/cylinder_pool_claim"
-    // subscribe to topic "/scara_right_upper_boundary"
-    // service client to service "/scara_left_upper_boundary_change"
-    // action client for gripper control, "gripper_action"
+//#------suscribir a------------------/current_cylinder_blocks
+//#------suscribir a------------------/cylinder_blocks_poses
+//#------suscribir a------------------/scara_robot_left_rotation1_pos
+//#------subscribir a-----------------/scara_robot_left_rotation2_pos
+//#-------publicar a------------------/scara_robot_left_rotation1_pos_cmd
+//#-------publicar a------------------/scara_robot_left_rotation2_pos_cmd
+//#-------suscribir a-----------------/cylinder_active_pool
+//#-------cliente en el servicio------/cylinder_pool_claim
+//#----------suscribir a--------------/scara_right_upper_boundary
+//#-------cliente de servicio-------------/scara_left_upper_boundary_change
+//#------cliente de la accion para control de gripper-----/gripper_action
 
-// motion steps decomposed:
-    // 1.stand by position -> target cylinder position
-    // 2.target cylinder hovering (for cylinder grasping operation)
-    // 3.target cylinder position -> drop position
-    // 4.drop position -> stand by position
-// only in motion step 1, the operation may be delayed when the other robot is in operation range
+//Los pasos del movimiento de la simulacion:
 
-// upper boundary control method:
-    // each robot has a state machine contains a boolean and a number
-    // the boolean indicate if the robot is at upper area of the conveyor
-    // the number indicate the upper boundary the robot goes
-    // each robot check the other robot's state and make change to its own
+//    1. pocision de espera-> posicion del cilindro objetivo
+//    2.cilindros de objetivo flotando(para la operacion del agarre del cilindro)
+//    3.Posicion del cilindro objetivo-> posicion de soltado
+//    4.Posicion de soltado-> Posicion de espera
+//    5. Solo en el paso del movimiendo 1, la operacion puede retrasarse cuando el otro robot esta en el rango de operacion.
+
+//El metodo de control de la superficie del robot(control anti-colision):
+
+//    1.El robot tiene una maquina de estado que contiene un booleano y un numero
+//    2. El booleano indica si el robot esta en el area superior del transportador
+//    3. El numero indica el limite superior que va el robot
+//    4. Cada robot verifica el estado del otro robot y realiza un cambio en el suyo
+
+//Aqui comienza el codigo:
 
 
 #include <ros/ros.h>

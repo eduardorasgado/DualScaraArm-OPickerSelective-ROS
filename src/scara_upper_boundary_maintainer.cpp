@@ -1,14 +1,17 @@
-// a node that publish on following two topics
-    // "/scara_left_upper_boundary"
-    // "/scara_left_upper_boundary"
-// these two topics describe the upper boundary in their planned motion
-// used as state machines for the purpose of collision avoidance
+//Un nodo que publica en los siguientes dos topics:
+//   /scara_left_upper_boundary
+//   /scara_right_upper_boundary
 
-// ros communication:
-    // keep publishing on upper boundary topics
-    // host two service servers for published data change
-        // "/scara_left_upper_boundary_change"
-        // "/scara_right_upper_boundary_change"
+//estos dos topics describen el limite superior en sus movimientos planeados
+//usados como maquina de estados para el proposito de evadir una colision
+
+//Comunicacion ROS:
+//  mantiene publicando en los topics de superficie o limite superior
+// hostea dos servidores de servicio para cambios de datos publicados
+//    /scara_left_upper_boundary_change
+//    /scara_right_upper_boundary_change
+
+//Aqui inicia el codigo:
 
 
 #include <ros/ros.h>
